@@ -1,15 +1,21 @@
-import math
+from forward_motion import forward_motion
+from reverse_motion import reverse_motion
 import numpy as np
 
 
 def haletsky_method(matrix, matrix_z):
-    import math
+    from forward_motion import forward_motion
+    from reverse_motion import reverse_motion
     import numpy as np
 
     eigenvalues = np.linalg.eigvals(matrix)
     determinant = np.linalg.det(matrix)
     t = np.all(eigenvalues > 0)
-    if (not np.all(eigenvalues > 0)) or np.all(matrix != matrix.T) or (determinant < 0):
+    if (
+        (not np.all(eigenvalues != 0))
+        or np.all(matrix != matrix.T)
+        or (determinant < 0)
+    ):
         raise "ошибка в данных"
 
     # B = np.zeros(len(matrix))
@@ -30,15 +36,30 @@ def haletsky_method(matrix, matrix_z):
                 for k in range(0, i):
                     summ += B[i][k] * C[k][j]
                     C[i][j] = (1 / B[i][i]) * (matrix[i][j] - summ)
-    y = np.linalg.solve(B, matrix_z)
-    x = np.linalg.solve(C, y)
-    return [B, C, x]
+
+    y1 = np.linalg.solve(B, matrix_z)
+    print(y1)
+
+    y = reverse_motion(B, matrix_z)
+
+    print(y)
+
+    x = forward_motion(C, y)
+
+    x1 = np.linalg.solve(C, y1)
+    print(x)
+    print(x1)
+
+    return x
 
 
 if __name__ == "__main__":  # тесты
-    matrix = np.array([[3, 1, -1, 2], [-5, 1, 3, -4], [2, 0, 1, -1], [1, -5, 3, -3]])
-    matrix_z = np.array([6, -12, 1, 3])
+    matrix = np.array(
+        [[3, 1, -1, 2], [-5, 1, 3, -4], [2, 0, 1, -1], [1, -5, 3, -3]], dtype=float
+    )
+    matrix_z = np.array([6, -12, 1, 3], dtype=float)
     x_z = np.linalg.solve(matrix, matrix_z)
-    [B, C, x] = haletsky_method(matrix, matrix_z)
-    print(x, x_z)
-    print(B.dot(C))
+    x = haletsky_method(matrix, matrix_z)
+    # print(x, x_z)
+    # print(B.dot(C))
+    # np.array([[4, 12, -16], [12, 37, -43], [-16, -43, 98]])

@@ -1,8 +1,6 @@
 from tkinter import *
 from tkinter import scrolledtext
-from technical.strToFunc import strToFunc
 from haletsky_method.haletsky_method import haletsky_method
-from technical.find_interval import find_intrerval
 from technical.def_pypplot import def_pyplot
 import numpy as np
 
@@ -44,13 +42,13 @@ def clicked2():  # функция 2ой кнопки(вызов бисекции
     count = int(res)
     global matrix
     global matrix_z
-    matrix = np.zeros((count, count))
-    matrix_z = np.zeros(count)
+    matrix = np.zeros((count, count),dtype=float)
+    matrix_z = np.zeros(count,dtype=float)
     for i in range(count):
         matrix_z[i] = int(globals()["p_z%d" % i].get())
         for j in range(count):
             matrix[i, j] = int(globals()["p%d%d" % (i, j)].get())
-    [B, C, x] = haletsky_method(matrix, matrix_z)
+    x= haletsky_method(matrix, matrix_z)
     # txt.insert(INSERT, f"\n => {B}")
     # txt.insert(INSERT, f"\n => {C}")
     # txt.insert(INSERT, f"\n => {X}")
