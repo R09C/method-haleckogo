@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import scrolledtext
 from haletsky_method.haletsky_method import haletsky_method
-from technical.def_pypplot import def_pyplot
+from haletsky_method.forward_motion import forward_motion
+from haletsky_method.reverse_motion import reverse_motion
+from sqr_root_method.sqr_root_method import sqr_root_method
 import numpy as np
 
 
@@ -42,21 +44,21 @@ def clicked2():  # функция 2ой кнопки(вызов бисекции
     count = int(res)
     global matrix
     global matrix_z
-    matrix = np.zeros((count, count),dtype=float)
-    matrix_z = np.zeros(count,dtype=float)
+    matrix = np.zeros((count, count), dtype=float)
+    matrix_z = np.zeros(count, dtype=float)
     for i in range(count):
         matrix_z[i] = int(globals()["p_z%d" % i].get())
         for j in range(count):
             matrix[i, j] = int(globals()["p%d%d" % (i, j)].get())
-    x= haletsky_method(matrix, matrix_z)
-    # txt.insert(INSERT, f"\n => {B}")
+    x = haletsky_method(matrix, matrix_z)
+    txt.insert(INSERT, f"\n{x}")
     # txt.insert(INSERT, f"\n => {C}")
     # txt.insert(INSERT, f"\n => {X}")
 
 
-def clicked3():
-    print(matrix)
-    print(matrix_z)
+# def clicked3():
+#     print(matrix)
+#     print(matrix_z)
 
 
 #     global root1
@@ -137,8 +139,8 @@ btn1 = Button(window, text="найти", command=clicked1)
 btn1.grid(column=1, row=0)
 btn2 = Button(window, text="запись", command=clicked2)
 btn2.grid(column=2, row=0)
-btn3 = Button(window, text="Очистить", command=clicked3)
-btn3.grid(column=3, row=0)
+# btn3 = Button(window, text="Очистить", command=clicked3)
+# btn3.grid(column=3, row=0)
 # btn4 = Button(window, text="Очистить", command=clean2)
 # btn4.grid(column=8, row=2)
 # btn5 = Button(window, text="Промежутки", command=clicked3)

@@ -1,11 +1,10 @@
-from forward_motion import forward_motion
-from reverse_motion import reverse_motion
-import numpy as np
+# from haletsky_method.forward_motion import forward_motion
+# from haletsky_method.reverse_motion import reverse_motion
 
 
 def haletsky_method(matrix, matrix_z):
-    from forward_motion import forward_motion
-    from reverse_motion import reverse_motion
+    from haletsky_method.forward_motion import forward_motion
+    from haletsky_method.reverse_motion import reverse_motion
     import numpy as np
 
     eigenvalues = np.linalg.eigvals(matrix)
@@ -54,6 +53,10 @@ def haletsky_method(matrix, matrix_z):
 
 
 if __name__ == "__main__":  # тесты
+    from forward_motion import forward_motion
+    from reverse_motion import reverse_motion
+    import numpy as np
+
     matrix = np.array(
         [[3, 1, -1, 2], [-5, 1, 3, -4], [2, 0, 1, -1], [1, -5, 3, -3]], dtype=float
     )
