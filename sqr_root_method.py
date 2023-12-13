@@ -2,16 +2,9 @@ def sqr_root_method(matrix, matrix_z):
     import numpy as np
     from tex.forward_motion import forward_motion
     from tex.reverse_motion import reverse_motion
+    from tex.check_sqr_root import check_sqr_root
 
-    eigenvalues = np.linalg.eigvals(matrix)
-    determinant = np.linalg.det(matrix)
-
-    if (
-        (not np.all(eigenvalues > 0))
-        or (not np.allclose(matrix, matrix.T))
-        or (determinant < 0)
-    ):
-        raise ValueError("Ошибка в данных")
+    check_sqr_root(matrix)
 
     n = len(matrix)
     T = np.zeros_like(matrix, dtype=float)
