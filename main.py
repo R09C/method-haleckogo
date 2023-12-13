@@ -1,9 +1,9 @@
 from tkinter import *
 from tkinter import scrolledtext
-from haletsky_method.haletsky_method import haletsky_method
-from haletsky_method.forward_motion import forward_motion
-from haletsky_method.reverse_motion import reverse_motion
-from sqr_root_method.sqr_root_method import sqr_root_method
+from haletsky_method import haletsky_method
+from tex.forward_motion import forward_motion
+from tex.reverse_motion import reverse_motion
+from sqr_root_method import sqr_root_method
 import numpy as np
 
 

@@ -3,22 +3,32 @@
 
 
 def haletsky_method(matrix, matrix_z):
-    from haletsky_method.forward_motion import forward_motion
-    from haletsky_method.reverse_motion import reverse_motion
+    from tex.forward_motion import forward_motion
+    from tex.reverse_motion import reverse_motion
     import numpy as np
 
     eigenvalues = np.linalg.eigvals(matrix)
     determinant = np.linalg.det(matrix)
     t = np.all(eigenvalues > 0)
-    if (
-        (not np.all(eigenvalues != 0))
-        or np.all(matrix != matrix.T)
-        or (determinant < 0)
-    ):
-        raise "ошибка в данных"
+
+    for i in range(len(matrix)):
+        chek_matrix = np.full((i + 1, i + 1), 0.0, dtype=float)
+        for k in range(i + 1):
+            for j in range(i + 1):
+                chek_matrix[k][j] = matrix[k][j]
+        print(chek_matrix)
+        if np.linalg.det(chek_matrix) == 0:
+            raise ZeroDivisionError("Деление на ноль запрещено")
+
+    # if (
+    #     (not np.all(eigenvalues != 0))
+    #     or np.all(matrix != matrix.T)
+    #     or (determinant < 0)
+    # ):
+    #     raise "ошибка в данных"
 
     # B = np.zeros(len(matrix))
-    B = np.full((len(matrix), len(matrix)), 0.0)
+    B = np.full((len(matrix), len(matrix)), 0.0, dtype=float)
     C = np.eye((len(matrix)))
 
     for i in range(len(matrix)):
@@ -53,8 +63,8 @@ def haletsky_method(matrix, matrix_z):
 
 
 if __name__ == "__main__":  # тесты
-    from forward_motion import forward_motion
-    from reverse_motion import reverse_motion
+    from tex.forward_motion import forward_motion
+    from tex.reverse_motion import reverse_motion
     import numpy as np
 
     matrix = np.array(

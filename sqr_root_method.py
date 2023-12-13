@@ -1,10 +1,8 @@
-
-
-
 def sqr_root_method(matrix, matrix_z):
     import numpy as np
-    from forward_motion import forward_motion
-    from reverse_motion import reverse_motion
+    from tex.forward_motion import forward_motion
+    from tex.reverse_motion import reverse_motion
+
     eigenvalues = np.linalg.eigvals(matrix)
     determinant = np.linalg.det(matrix)
 
@@ -41,8 +39,9 @@ def sqr_root_method(matrix, matrix_z):
 
 if __name__ == "__main__":
     import numpy as np
-    from forward_motion import forward_motion
-    from reverse_motion import reverse_motion
+    from tex.forward_motion import forward_motion
+    from tex.reverse_motion import reverse_motion
+
     matrix = np.array(
         [[10, 1, -0.5, 0.7], [1, 15, 0.5, 4], [-0.5, 0.5, 20, 1], [0.7, 4, 1, 17]],
         dtype=float,
