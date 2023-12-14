@@ -28,17 +28,17 @@ def haletsky_method(matrix, matrix_z):
                     C[i][j] = (1 / B[i][i]) * (matrix[i][j] - summ)
 
     y1 = np.linalg.solve(B, matrix_z)
-    print(y1)
+    # print(y1)
 
     y = reverse_motion(B, matrix_z)
 
-    print(y)
+    # print(y)
 
     x = forward_motion(C, y)
 
     x1 = np.linalg.solve(C, y1)
-    print(x)
-    print(x1)
+    # print(x)
+    # print(x1)
 
     return x
 
@@ -46,6 +46,7 @@ def haletsky_method(matrix, matrix_z):
 if __name__ == "__main__":  # тесты
     from tex.forward_motion import forward_motion
     from tex.reverse_motion import reverse_motion
+    from tex.generate_matrix import generate_matrix
     import numpy as np
 
     matrix = np.array(
@@ -54,6 +55,16 @@ if __name__ == "__main__":  # тесты
     matrix_z = np.array([6, -12, 1, 3], dtype=float)
     x_z = np.linalg.solve(matrix, matrix_z)
     x = haletsky_method(matrix, matrix_z)
+
+    [symmetric_matrix, A_z] = generate_matrix()
+    t_z = np.linalg.solve(symmetric_matrix, A_z)
+    t = haletsky_method(symmetric_matrix, A_z)
+    print(t)
+    print(
+        "------------------------------------------------------------------------------"
+    )
+    print(t_z)
+
     # print(x, x_z)
     # print(B.dot(C))
     # np.array([[4, 12, -16], [12, 37, -43], [-16, -43, 98]])

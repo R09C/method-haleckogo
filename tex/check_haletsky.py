@@ -6,6 +6,5 @@ def check_haletsky(matrix):
         for k in range(i + 1):
             for j in range(i + 1):
                 chek_matrix[k][j] = matrix[k][j]
-        print(chek_matrix)
         if np.linalg.det(chek_matrix) == 0:
             raise ZeroDivisionError("Деление на ноль запрещено")
